@@ -1,0 +1,109 @@
+import React from 'react'
+import {MdClose,MdChat,MdPeople,MdMicNone,MdMicOff,MdSend} from "react-icons/md";
+import { connect } from 'react-redux';
+import { setNavbar, setSidebar, setTab } from '../redux/actions/UiActions';
+import "./Sidebar.css"
+
+
+function Avatar({src}){
+   return (<div className="avatar">
+      <img src={src} alt="user-avatar" />
+   </div>);
+}
+const UserList = (props)=>{
+   return (
+      <div className="user-list">
+         <div className="user__list__left">
+         <Avatar src={"https://randomuser.me/api/portraits/women/79.jpg"}/>
+         <span>User Name</span>
+         </div>
+         <div>
+            <button><MdMicNone/></button>
+         </div>
+      </div>
+   )
+}
+
+function Sidebar(props) {
+console.log("Sidebar props",props)
+
+const [messages,setMessages] = React.useState([]);
+const [message,setMessage] = React.useState("");
+
+   const handleSwitch = ()=>{
+      props.setNavbar(true);
+      props.setSidebar(false);
+   }
+
+   const handleMessage = (e)=>{
+      setMessages([...messages,{user:"You",time:new Date().getTime(),message:message}])
+      setMessage("");
+   }
+   return (
+      <div className={`sidebar ${props.isSidebar && "sidebar__enable"}`}>
+         <div className="sidebar__header">
+            <h1>Meeting details</h1>
+            <button onClick={handleSwitch}>
+               <MdClose/>
+            </button>
+         </div>
+         <div className="sidebar__tabs">
+         <button onClick={()=>props.setTab("people")} className={`${props.activeTab==="people" && "activeTab"}`}><MdPeople/><span>(0)</span></button>
+            <button onClick={()=>props.setTab("chat")} className={`${props.activeTab==="chat" && "activeTab"}`}><MdChat/></button>
+           
+         </div>
+
+         {props.activeTab==="people" && <div className="attendes__list">
+            <UserList/>
+            <UserList/>
+            <UserList/>
+            <UserList/>
+            <UserList/>
+            <UserList/>
+            <UserList/>
+            <UserList/>
+            <UserList/>
+            <UserList/>
+            <UserList/>
+            <UserList/>
+            <UserList/>
+            <UserList/>
+         </div>}
+         {props.activeTab==="chat" && <div className="chat__body">
+            <div className="chat__body__chats">
+               {
+                  messages.map((message,i)=>{
+                     return <div className="user-chat">
+                      <div className="chat__top">
+                         <span>You</span>
+                         <span>{new Date(message.time).getHours()}:{new Date(message.time).getMinutes()}</span>
+                      </div>
+                      <div className="chat__message">
+                         {message.message}
+                      </div>
+                     </div>
+                  })
+               }
+            </div>
+            <div className="chat__footer">
+               <div className="chat__footer__input">
+                  <input type="text" name="message" id="message" placeholder="send a message to everyone" value={message} onChange={(e)=>setMessage(e.target.value)}/>
+                  <button disabled={!message && true}onClick={!message?null:handleMessage}><MdSend/></button>
+               </div>
+            </div>
+         </div>}
+      </div>
+   )
+}
+
+const mapDispatchToProps = (dispatch)=>({
+   setNavbar:isNavbar=>dispatch(setNavbar(isNavbar)),
+   setSidebar:isSidebar=>dispatch(setSidebar(isSidebar)),
+   setTab:activeTab=>dispatch(setTab(activeTab))
+})
+const mapStateToProps = (state)=>({
+   isNavbar:state.UiReducer.isNavbar,
+   isSidebar:state.UiReducer.isSidebar,
+   activeTab:state.UiReducer.activeTab
+})
+export default connect(mapStateToProps,mapDispatchToProps)(Sidebar)

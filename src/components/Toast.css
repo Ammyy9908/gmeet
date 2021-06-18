@@ -1,0 +1,20 @@
+.toast{
+   padding:12px;
+   background-color: var(--color-primary);
+   width:250px;
+   height:55px;
+   display: flex;
+   align-items: center;
+   justify-content:flex-start;
+   color: #fff;
+   font-family: sans-serif;
+   border-radius: 4px;
+   position:fixed;
+   bottom:-110px;
+   left: 10px;
+   transition:all .1s ease-in-out;
+}
+
+.toast__enable{
+   bottom:110px;
+}

@@ -1,0 +1,58 @@
+.meeting__info{
+   
+   background-color:#fff;
+   width: 450px;
+   border-radius: 10px;
+   position:fixed;
+   bottom:-110px;
+   left: 10px;
+   padding:32px;
+   transition:all .1s ease-in-out;
+}
+.info_enable{
+   bottom:110px;
+}
+.meeting__info__body{
+   display: flex;
+   flex-direction:column;
+   align-items: flex-start;
+}
+.meeting__info__body h3{
+   font-size: 14px;
+   font-family: sans-serif;
+   color: var(--color-primary);
+   margin-bottom: 15px;
+}
+.meeting__info__body span{
+   display: inline-block;
+   width: 100%;
+   margin-bottom: 15px;
+   font-size: 14px;
+   font-family: sans-serif;
+   color: var(--color--secondary);
+   selection:var(--color-primary);
+   user-select: text;
+}
+.meeting__info__body span::selection{
+   color: #fff;
+   background-color:var(--color-primary);
+}
+.meeting__info__body button{
+   padding:.5rem;
+   background-color: transparent;
+   border: 0;
+   outline:0;
+   display: flex;
+   align-items:center;
+   cursor: pointer;
+   font-size: 16px;
+   border-radius: 4px;
+}
+.meeting__info__body button svg{
+   margin-right: 10px;
+   width: 25px;
+   height: 25px;
+}
+.meeting__info__body button:hover{
+   background-color: rgba(42, 40, 40, 0.137);
+}
