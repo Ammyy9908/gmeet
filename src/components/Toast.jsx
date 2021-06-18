@@ -10,7 +10,9 @@ function Toast({isToast,setToast}) {
                setToast(false)
             },5000);
          }
-   },[isToast])
+   },
+   // eslint-disable-next-line
+   [isToast])
    return (
       <div className={`toast ${isToast && "toast__enable"}`}>
          {isToast}

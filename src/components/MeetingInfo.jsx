@@ -1,5 +1,6 @@
 import React from 'react';
 import "./MeetingInfo.css";
+// eslint-disable-next-line
 import {MdInfo,MdContentPaste} from "react-icons/md"
 import { connect } from 'react-redux';
 import { setToast } from '../redux/actions/UiActions';

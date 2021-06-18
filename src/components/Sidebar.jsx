@@ -1,4 +1,5 @@
 import React from 'react'
+// eslint-disable-next-line
 import {MdClose,MdChat,MdPeople,MdMicNone,MdMicOff,MdSend} from "react-icons/md";
 import { connect } from 'react-redux';
 import { setNavbar, setSidebar, setTab } from '../redux/actions/UiActions';

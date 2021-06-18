@@ -1,4 +1,5 @@
 import React from 'react';
+// eslint-disable-next-line
 import {MdMic,MdCallEnd,MdVideocam,MdVideocamOff,MdKeyboardArrowUp} from 'react-icons/md';
 import { connect } from 'react-redux';
 import { setInfo } from '../redux/actions/UiActions';
