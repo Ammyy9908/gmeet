@@ -7,3 +7,180 @@
   height: 100vh;
   background-color: var(--color--secondary);
 }
+.homepage{
+  width: 100%;
+  height: 100vh;
+}
+header{
+  width: 95%;
+  margin: 0 auto;
+  display: flex;
+  align-items:center;
+  justify-content:space-between;
+  height:65px;
+}
+.brandname{
+  flex: 1;
+}
+.brandname a{
+  font-size: 20px;
+  color: var(--color-primary);
+  text-decoration: none;
+  font-family: sans-serif;
+}
+nav{
+  flex: 1;
+  display: flex;
+  align-items:center;
+  justify-content: flex-end;
+  gap:25px;
+}
+.time_home{
+  font-weight: 400;
+  color: rgb(87, 87, 87);
+  font-size: 20px;
+  font-family: sans-serif;
+}
+.nav__controls button{
+  width: 45px;
+  height: 45px;
+  background-color: transparent;
+  border: 0;
+  outline:0;
+  cursor: pointer;
+}
+.nav__controls button svg{
+  width: 20px;
+  height: 20px;
+}
+.landing{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height:65vh;
+}
+.hero__left{
+  flex: 1;
+  padding-left: 25px;
+  flex-direction:column;
+  gap:25px;
+}
+.hero__heading{
+  margin-bottom: 15px;
+}
+.hero__heading h1{
+  font-size: 2.5rem;
+  font-weight: 500;
+  font-family: sans-serif;
+}
+.hero__left p{
+  font-size: 18px;
+  margin-bottom: 35px;
+  color: #999;
+  font-family: sans-serif;
+}
+.hero__right{
+  flex: 1;
+  position: relative;
+  height:55vh;
+}
+.hero__right img{
+  width: 75%;
+  height:55%;
+  position:absolute;
+  right:0px;
+  top:45px;
+}
+.hero__meeting__form{
+  width: 100%;
+  display: flex;
+  gap:15px;
+}
+.hero__meeting__form > button{
+  background-color:var(--color-primary);
+  padding: 12px;
+  color: #fff;
+  width: 150px;
+  border: 0;
+  height:45px;
+transition:all .2s ease-in-out;
+cursor: pointer;
+display:flex;
+align-items: center;
+position: relative;
+}
+.button_popover{
+  width:250px;
+  position: absolute;
+  background-color:#fff;
+  left: 0;
+  display: flex;
+  flex-direction:column;
+  align-items: flex-start;
+  box-shadow: 0px 0px 10px 0 rgba(0,0,0,0.115);
+  padding-top:15px;
+  padding-bottom: 15px;
+  top: 0px;
+  z-index: 999;
+  border-radius:3px;
+  
+}
+.button_popover button{
+  width: 100%;
+  height:45px;
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  cursor: pointer;
+  border-radius: 1px;
+}
+.button_popover button:hover{
+ 
+  background-color: var(--color-primary);
+  color: #fff;
+
+}
+.button_popover button> svg{
+  margin-left: 10px;
+}
+.hero__meeting__form > button:hover{
+  box-shadow: 10px 0px 10px 0 rgba(0,0,0,0.115);
+}
+.hero__meeting__form button svg{
+  width: 18px;
+  height: 18px;
+  margin-right: 5px;
+}
+.hero__meeting__form input{
+  width: 35%;
+  padding-left: 10px;
+  outline:0;
+  border-radius: 5px;
+  background-color:transparent;
+  border: 1px solid #999;
+}
+.hero__meeting__form input:focus{
+  border:2px solid var(--color-primary);
+}
+
+.google_login_auth{
+  
+  width:250px;
+  height:45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border:1px solid #999;
+  background-color:transparent;
+  border-radius:5px;
+  font-size: 16px;
+  gap:15px;
+  cursor: pointer;
+}
+.google_login_auth:hover{
+  box-shadow:0px 0px 10px 0 rgba(0,0,0,0.115);
+}

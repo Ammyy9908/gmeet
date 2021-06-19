@@ -3,8 +3,46 @@ import './App.css';
 
 import React from "react";
 import {BrowserRouter as Router,Switch,Route} from "react-router-dom";
+import Home from "./screens/Home";
+import axios from "axios";
+import Cookies from "js-cookie";
+import { connect } from "react-redux";
+import { setUser } from "./redux/actions/UiActions";
 
-function App() {
+function App(props) {
+
+
+  React.useEffect(()=>{
+    const getUser = async ()=>{
+       try{
+          const r = await axios.get(`${process.env.REACT_APP_SERVER_PROD}/user`,{
+             headers: {
+               "Content-Type": "application/json",
+               Authorization: "Bearer " + Cookies.get("AUTH_TOKEN"),
+             },
+           });
+
+           console.log(r.data);
+
+           if(r.data.isData){
+            props.setUser(r.data.user);
+           }
+           
+
+
+          
+          
+       }
+       catch(e){
+          if(e.response && e.response.data){
+             console.log(e.response.data);
+          }
+       }
+    }
+    Cookies.get("AUTH_TOKEN") && getUser();
+ },
+ // eslint-disable-next-line
+ [])
   
 
   return (
@@ -14,7 +52,7 @@ function App() {
     
     <Switch>
     <Route exact path="/">
-      <h1>Home Page</h1>
+      <Home/>
       </Route>
 
       <Route exact path="/:code" render={(props) => {
@@ -28,4 +66,7 @@ function App() {
   );
 }
 
-export default App;
+const mapDispatchToProps = (dispatch)=>({
+  setUser:user=>dispatch(setUser(user))
+})
+export default connect(null,mapDispatchToProps)(App);

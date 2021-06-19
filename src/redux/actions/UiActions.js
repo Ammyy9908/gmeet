@@ -28,3 +28,13 @@ export const setPeople = (peoples)=>({
    type:"SET_PEOPLES",
    peoples
 })
+
+export const setPopOver = (popover)=>({
+   type:"SET_POPOVER",
+   popover
+})
+
+export const setUser = (user)=>({
+   type:"SET_USER",
+   user
+})

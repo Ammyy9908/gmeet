@@ -4,7 +4,9 @@ const intialState = {
    activeTab:"people",
    isToast:false,
    isInfo:false,
-   peoples:[]
+   peoples:[],
+   popover:false,
+   user:null
 }
 
 const UiReducer = (state=intialState,action)=>{
@@ -13,6 +15,20 @@ const UiReducer = (state=intialState,action)=>{
          return{
             ...state,
             isNavbar:action.isNavbar
+         }
+      }
+
+      case "SET_USER":{
+         return {
+            ...state,
+            user:action.user
+         }
+      }
+
+      case "SET_POPOVER":{
+         return{
+            ...state,
+            popover:action.popover
          }
       }
 

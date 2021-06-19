@@ -25,8 +25,8 @@ function Room({id,setPeople,setToast}) {
 
     socket.on("system-message",(message) => {
   
-       const audio = new Audio(ping);
-       audio.play();
+      const audio = new Audio(ping);
+         audio.play();
        setToast(message.message)
     })
     

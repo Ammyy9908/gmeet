@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { SocketContext } from '../context/context';
 import { setNavbar, setSidebar, setTab } from '../redux/actions/UiActions';
 import "./Sidebar.css"
-import ping from "../assets/Ping.mp3"
 
 function Avatar({src}){
    return (<div className="avatar">
@@ -49,8 +48,7 @@ const [message,setMessage] = React.useState("");
    socket.on("chat-message",(message)=>{
 console.log(message);
 setMessages([...messages,message.message])
-const audio = new Audio(ping);
-       audio.play();
+
    })
 
    console.log(messages);
