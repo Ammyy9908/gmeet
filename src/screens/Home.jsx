@@ -1,9 +1,11 @@
 import React from 'react'
 import {MdSettings,MdFeedback,MdHelpOutline,MdVideoCall,MdLink,MdAdd} from "react-icons/md";
+import NewMeetingModal from "../components/NewMeetingModal"
 import { connect } from 'react-redux';
 import conversation from "../assets/conversation.svg"
-import { setDropDown, setPopOver, setUser } from '../redux/actions/UiActions';
+import { setDropDown, setModal, setPopOver, setUser } from '../redux/actions/UiActions';
 import { GoogleLogin } from 'react-google-login';
+import Toast from '../components/Toast'
 import axios from "axios";
 import Cookies from "js-cookie";
 function Avatar({src,setDropDown}){
@@ -25,7 +27,7 @@ function Home(props) {
 
    const handlePopRemove = (e)=>{
      console.log(e.target);
-      if(!e.target.classList.contains("new-meeting-btn")){
+      if(!e.target.classList.contains("new-meeting-btn") && !e.target.classList.contains("new_meet_btn")){
          props.setPopOver(false);
       }
       if(!e.target.classList.contains("avatar") && !e.target.classList.contains("user__avatar") && !e.target.classList.contains("account_dropdown") && !e.target.classList.contains("logout_btn")){
@@ -98,8 +100,15 @@ function Home(props) {
          Cookies.remove("AUTH_TOKEN");
          props.setDropDown(false);
     }
+
+    const handleNewMeeting = ()=>{
+      props.setPopOver(false);
+       props.setModal(true);
+    }
    return (
       <div className="homepage" onClick={handlePopRemove}>
+         {props.isModal && <NewMeetingModal/>}
+         <Toast/>
          <header>
             <div className="brandname">
                <a href="/">Gmeet</a>
@@ -148,7 +157,7 @@ function Home(props) {
                      <button onClick={()=>props.setPopOver(true)} className="new-meeting-btn">
                         <MdVideoCall/> New Meeting
                         {props.popover && <div className="button_popover">
-                           <button><MdLink/>Create a meeting for later</button>
+                           <button onClick={handleNewMeeting} className="new_meet_btn"><MdLink/>Create a meeting for later</button>
                            <button><MdAdd/> Start an instant meeting</button>
                         </div>}
                         </button>
@@ -168,12 +177,15 @@ const mapDispatchToProps = (dispatch)=>({
    setPopOver:popover=>dispatch(setPopOver(popover)),
    setUser:user=>dispatch(setUser(user)),
    setDropDown:userDropDown=>dispatch(setDropDown(userDropDown)),
+   setModal:isModal=>dispatch(setModal(isModal)),
+   
   
 })
 
 const mapStateToProps = (state)=>({
    popover:state.UiReducer.popover,
    user:state.UiReducer.user,
-   userDropDown:state.UiReducer.userDropDown
+   userDropDown:state.UiReducer.userDropDown,
+   isModal:state.UiReducer.isModal,
 })
 export default connect(mapStateToProps,mapDispatchToProps)(Home)

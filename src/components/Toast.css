@@ -1,6 +1,6 @@
 .toast{
    padding:12px;
-   background-color: var(--color-primary);
+   background-color: var(--color--secondary);
    width:250px;
    height:55px;
    display: flex;

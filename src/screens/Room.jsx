@@ -39,7 +39,7 @@ function Room({id,setPeople,setToast}) {
          <Navbar/>
          <Sidebar/>
          <MeetingInfo/>
-         <Toast message="copied meeting link"/>
+         <Toast/>
          <Footer/>
       </div>
       </SocketContext.Provider>

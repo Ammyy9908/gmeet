@@ -44,3 +44,8 @@ export const setDropDown = (userDropDown)=>({
    userDropDown
 
 })
+
+export const setModal = (isModal)=>({
+   type:"SET_MODAL",
+   isModal
+})

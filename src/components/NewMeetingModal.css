@@ -1,0 +1,85 @@
+.NewMeetingModal__popup{
+   width: 100%;
+   height:100vh;
+   position:fixed;
+   background-color:#2626268e;
+   display: flex;
+   align-items:center;
+   justify-content:center;
+   z-index: 1000;
+}
+
+.new__meeting__modal{
+   padding:12px;
+   width:450px;
+   background-color:#fff;
+   border-radius:5px;
+}
+.modal__header{
+   height:35px;
+   font-size: 16px;
+   font-family: sans-serif;
+   color: var(--color--secondary);
+   margin-bottom: 15px;
+   display: flex;
+   align-items:center;
+   justify-content:space-between;
+  
+}
+.modal__header button{
+   width: 45px;
+   height: 45px;
+   border: 0;
+   background-color:transparent;
+   outline: 0;
+   cursor: pointer;
+}
+.modal__header button svg{
+   width: 25px;
+   height: 25px;
+   fill: #999;
+}
+.modal__header h3{
+   font-weight: 500;
+}
+.new__meeting__modal > p{
+   line-height:20px;
+   font-size: 14px;
+   color: rgb(75, 75, 75);
+   font-family: sans-serif;
+}
+.generated__link__wrapper{
+   width: 100%;
+   height:45px;
+   background-color: rgb(238, 238, 238);
+   display: flex;
+   align-items:center;
+   padding-left: 15px;
+   margin-top: 15px;
+   border-radius:5px;
+   font-family: sans-serif;
+   font-size: 16px;
+   justify-content:space-between;
+   padding-right: 15px;
+}
+.generated__link__wrapper button{
+   width: 40px;
+   height: 40px;
+   display: flex;
+   align-items:center;
+   justify-content:center;
+   background-color:transparent;
+   border: 0;
+   outline:0;
+   cursor: pointer;
+   border-radius:65px;
+}
+.generated__link__wrapper button svg{
+   width: 20px;
+   height: 20px;
+   
+   
+}
+.generated__link__wrapper button:hover{
+   background-color:#26262626;
+}
