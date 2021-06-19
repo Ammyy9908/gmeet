@@ -1,10 +1,11 @@
-import React from 'react'
+import React,{useContext} from 'react'
 // eslint-disable-next-line
 import {MdClose,MdChat,MdPeople,MdMicNone,MdMicOff,MdSend} from "react-icons/md";
 import { connect } from 'react-redux';
+import { SocketContext } from '../context/context';
 import { setNavbar, setSidebar, setTab } from '../redux/actions/UiActions';
 import "./Sidebar.css"
-
+import ping from "../assets/Ping.mp3"
 
 function Avatar({src}){
    return (<div className="avatar">
@@ -27,6 +28,9 @@ const UserList = (props)=>{
 
 function Sidebar(props) {
 console.log("Sidebar props",props)
+const socket = useContext(SocketContext);
+
+
 
 const [messages,setMessages] = React.useState([]);
 const [message,setMessage] = React.useState("");
@@ -37,9 +41,19 @@ const [message,setMessage] = React.useState("");
    }
 
    const handleMessage = (e)=>{
-      setMessages([...messages,{user:"You",time:new Date().getTime(),message:message}])
-      setMessage("");
+      setMessages([...messages,{time:new Date().getTime(),message:message}])
+      socket.emit("chat-message",{time:new Date().getTime(),message:message});
+      setMessage('');
    }
+
+   socket.on("chat-message",(message)=>{
+console.log(message);
+setMessages([...messages,message.message])
+const audio = new Audio(ping);
+       audio.play();
+   })
+
+   console.log(messages);
    return (
       <div className={`sidebar ${props.isSidebar && "sidebar__enable"}`}>
          <div className="sidebar__header">
@@ -49,26 +63,18 @@ const [message,setMessage] = React.useState("");
             </button>
          </div>
          <div className="sidebar__tabs">
-         <button onClick={()=>props.setTab("people")} className={`${props.activeTab==="people" && "activeTab"}`}><MdPeople/><span>(0)</span></button>
+         <button onClick={()=>props.setTab("people")} className={`${props.activeTab==="people" && "activeTab"}`}><MdPeople/><span>({props.peoples.length})</span></button>
             <button onClick={()=>props.setTab("chat")} className={`${props.activeTab==="chat" && "activeTab"}`}><MdChat/></button>
            
          </div>
 
          {props.activeTab==="people" && <div className="attendes__list">
-            <UserList/>
-            <UserList/>
-            <UserList/>
-            <UserList/>
-            <UserList/>
-            <UserList/>
-            <UserList/>
-            <UserList/>
-            <UserList/>
-            <UserList/>
-            <UserList/>
-            <UserList/>
-            <UserList/>
-            <UserList/>
+          
+            {
+               props.peoples.map((people,i)=>{
+                  return   <UserList key={i}/>
+               })
+            }
          </div>}
          {props.activeTab==="chat" && <div className="chat__body">
             <div className="chat__body__chats">
@@ -105,6 +111,7 @@ const mapDispatchToProps = (dispatch)=>({
 const mapStateToProps = (state)=>({
    isNavbar:state.UiReducer.isNavbar,
    isSidebar:state.UiReducer.isSidebar,
-   activeTab:state.UiReducer.activeTab
+   activeTab:state.UiReducer.activeTab,
+   peoples:state.UiReducer.peoples,
 })
 export default connect(mapStateToProps,mapDispatchToProps)(Sidebar)

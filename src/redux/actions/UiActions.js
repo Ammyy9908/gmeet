@@ -23,3 +23,8 @@ export const setInfo = (isInfo)=>({
    type:"SET_INFO",
    isInfo
 })
+
+export const setPeople = (peoples)=>({
+   type:"SET_PEOPLES",
+   peoples
+})

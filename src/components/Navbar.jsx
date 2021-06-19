@@ -31,7 +31,7 @@ function Navbar(props) {
    }
    return (
       <div className={`navbar ${!props.isNavbar && "navbar__disable"}`}>
-         <button onClick={handlePeople} className="people__button"><MdPeople/><span className="user__count">0</span></button>
+         <button onClick={handlePeople} className="people__button"><MdPeople/><span className="user__count">{props.peoples.length}</span></button>
          <button onClick={handleChat}><MdChat/></button>
          <div className="current-time">
             {time}
@@ -50,6 +50,7 @@ const mapDispatchToProps = (dispatch)=>({
    setTab:activeTab=>dispatch(setTab(activeTab))
 })
 const mapStateToProps = (state)=>({
-   isNavbar:state.UiReducer.isNavbar
+   isNavbar:state.UiReducer.isNavbar,
+   peoples:state.UiReducer.peoples
 })
 export default connect(mapStateToProps,mapDispatchToProps)(Navbar)
