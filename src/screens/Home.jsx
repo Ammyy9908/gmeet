@@ -2,13 +2,13 @@ import React from 'react'
 import {MdSettings,MdFeedback,MdHelpOutline,MdVideoCall,MdLink,MdAdd} from "react-icons/md";
 import { connect } from 'react-redux';
 import conversation from "../assets/conversation.svg"
-import { setPopOver, setUser } from '../redux/actions/UiActions';
+import { setDropDown, setPopOver, setUser } from '../redux/actions/UiActions';
 import { GoogleLogin } from 'react-google-login';
 import axios from "axios";
 import Cookies from "js-cookie";
-function Avatar({src}){
-   return (<div className="avatar">
-      <img src={src} alt="user-avatar" />
+function Avatar({src,setDropDown}){
+   return (<div className="avatar" onClick={()=>setDropDown(true)}>
+      <img src={src} alt="user-avatar" className="user__avatar"/>
    </div>);
 }
 
@@ -24,9 +24,12 @@ function Home(props) {
 
 
    const handlePopRemove = (e)=>{
-     
+     console.log(e.target);
       if(!e.target.classList.contains("new-meeting-btn")){
          props.setPopOver(false);
+      }
+      if(!e.target.classList.contains("avatar") && !e.target.classList.contains("user__avatar") && !e.target.classList.contains("account_dropdown") && !e.target.classList.contains("logout_btn")){
+         props.setDropDown(false);
       }
    }
 
@@ -39,6 +42,36 @@ function Home(props) {
       const {email,name,imageUrl} = response.profileObj;
 
 
+      // a function which get user back from db
+
+      const getUser = async ()=>{
+         try{
+            const r = await axios.get(`${process.env.REACT_APP_SERVER_PROD}/user`,{
+               headers: {
+                 "Content-Type": "application/json",
+                 Authorization: "Bearer " + Cookies.get("AUTH_TOKEN"),
+               },
+             });
+  
+             console.log(r.data);
+  
+             if(r.data.isData){
+              props.setUser(r.data.user);
+             }
+             
+  
+  
+            
+            
+         }
+         catch(e){
+            if(e.response && e.response.data){
+               console.log(e.response.data);
+            }
+         }
+      }
+
+
 
 
       
@@ -49,6 +82,7 @@ function Home(props) {
          const {token} = r.data;
          console.log("The token is ",token);
          Cookies.set("AUTH_TOKEN",token);
+         getUser();
       }
       catch(e){
          if(e.response && e.response.data){
@@ -57,6 +91,12 @@ function Home(props) {
       }
 
 
+    }
+
+    const handleLogout = ()=>{
+         props.setUser(null);
+         Cookies.remove("AUTH_TOKEN");
+         props.setDropDown(false);
     }
    return (
       <div className="homepage" onClick={handlePopRemove}>
@@ -71,7 +111,13 @@ function Home(props) {
                   <button><MdFeedback/></button>
                   <button><MdSettings/></button>
                </div>
-              { props.user && <Avatar src={props.user.avatar}/>}
+              { props.user && <Avatar src={props.user.avatar} setDropDown={props.setDropDown}/>}
+
+              {props.userDropDown && <div className="account_dropdown">
+               <h3>{props.user && props.user.name}</h3>
+               <p>{props.user && props.user.email}</p>
+               <button className="logout_btn" onClick={handleLogout}>Logout</button>
+              </div>}
             </nav>
          </header>
 
@@ -121,10 +167,13 @@ function Home(props) {
 const mapDispatchToProps = (dispatch)=>({
    setPopOver:popover=>dispatch(setPopOver(popover)),
    setUser:user=>dispatch(setUser(user)),
+   setDropDown:userDropDown=>dispatch(setDropDown(userDropDown)),
+  
 })
 
 const mapStateToProps = (state)=>({
    popover:state.UiReducer.popover,
-   user:state.UiReducer.user
+   user:state.UiReducer.user,
+   userDropDown:state.UiReducer.userDropDown
 })
 export default connect(mapStateToProps,mapDispatchToProps)(Home)

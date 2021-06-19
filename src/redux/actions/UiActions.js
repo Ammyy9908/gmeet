@@ -38,3 +38,9 @@ export const setUser = (user)=>({
    type:"SET_USER",
    user
 })
+
+export const setDropDown = (userDropDown)=>({
+   type:"ACCOUNT_DROPDOWN",
+   userDropDown
+
+})

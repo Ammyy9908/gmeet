@@ -6,7 +6,8 @@ const intialState = {
    isInfo:false,
    peoples:[],
    popover:false,
-   user:null
+   user:null,
+   userDropDown:false
 }
 
 const UiReducer = (state=intialState,action)=>{
@@ -15,6 +16,12 @@ const UiReducer = (state=intialState,action)=>{
          return{
             ...state,
             isNavbar:action.isNavbar
+         }
+      }
+      case "ACCOUNT_DROPDOWN":{
+         return{
+            ...state,
+            userDropDown:action.userDropDown
          }
       }
 
