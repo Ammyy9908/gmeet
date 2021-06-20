@@ -8,12 +8,18 @@ import { connect } from 'react-redux'
 import { setPeople, setToast } from '../redux/actions/UiActions'
 import {SocketContext, socket} from '../context/context';
 import ping from "../assets/Ping.mp3";
+import Cookies from "js-cookie";
+import { useHistory } from 'react-router-dom'
 function Room({id,setPeople,setToast,user}) {
+
+   const history = useHistory();
    console.log("props user",user);
   React.useEffect(() => {
-   
-   
-    socket.emit("join-meet",{code:id,user:{name:user ? user.name:"Someone",email:user ? user.email:"sb78639@gmail.com",avatar:user && user.avatar}});
+
+if(!Cookies.get("AUTH_TOKEN")){
+return history.push("/");
+}
+   socket.emit("join-meet",{code:id,user:{name:user ? user.name:"Someone",email:user ? user.email:"sb78639@gmail.com",avatar:user && user.avatar}});
     
 
     socket.on("user-connect",(users) => {
@@ -29,6 +35,7 @@ function Room({id,setPeople,setToast,user}) {
      
        setToast(message.message)
     })
+    
     
   },
   // eslint-disable-next-line
