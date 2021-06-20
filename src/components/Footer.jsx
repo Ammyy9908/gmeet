@@ -13,7 +13,7 @@ function Footer(props) {
    const handleInfoShow = ()=>{
       props.setInfo(!props.isInfo)
    }
-
+// eslint-disable-next-line
    const socket = useContext(SocketContext);
 
    const handleMettingEnd = ()=>{
