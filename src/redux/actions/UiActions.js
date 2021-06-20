@@ -79,3 +79,8 @@ export const setAudio = (audioStream)=>({
    type:"SET_AUDIO",
    audioStream
 })
+
+export const setVideo = (videoStream)=>({
+   type:"SET_VIDEO",
+   videoStream
+})

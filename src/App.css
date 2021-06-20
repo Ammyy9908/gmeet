@@ -23,6 +23,15 @@
   align-items: center;
   justify-content: center;
 }
+.user-tile video{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: rotateY(180deg);
+  -webkit-transform:rotateY(180deg); /* Safari and Chrome */
+  -moz-transform:rotateY(180deg);
+  border-radius:inherit;
+}
 .people__avatar{
   width: 115px;
   height:115px;

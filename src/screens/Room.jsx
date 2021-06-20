@@ -12,17 +12,20 @@ import Cookies from "js-cookie";
 import { useHistory } from 'react-router-dom'
 
 
-function UserTile({people,audioStream}){
+function UserTile({people,isCameraOn}){
    return (
-      <div className="user-tile">
+      <div className="user-tile" id={people.id+"media"}>
             <div className="people__avatar">
-               <audio autoplay="true" id={people.id} src={audioStream}/>
-               <img src={people.avatar} alt="people-avatar" />
+               <audio autoplay="true" id={people.id}/>
+
+              
+
             </div>
+            
       </div>
    )
 }
-function Room({id,setPeople,setToast,user,peoples,audioStream}) {
+function Room({id,setPeople,setToast,user,peoples,isCameraOn}) {
 
    const history = useHistory();
    console.log("props user",user);
@@ -45,7 +48,7 @@ return history.push("/");
     socket.on("system-message",(message) => {
   
      
-       setToast(message.message)
+       setToast(message.message);
     })
     
     
@@ -62,7 +65,7 @@ return history.push("/");
          <div className="room-body">
            {
               peoples.map((people,i)=>{
-                 return <UserTile key={i} people={people}/>
+                 return <UserTile key={i} people={people} isCameraOn={isCameraOn}/>
               })
            }
          </div>
@@ -77,6 +80,7 @@ const mapStateToProps = (state)=>({
    user:state.UiReducer.user,
    peoples:state.UiReducer.peoples,
    audioStream:state.UiReducer.audioStream,
+   isCameraOn:state.UiReducer.isCameraOn,
 })
 
 const mapDispatchToProps = (dispatch)=>({

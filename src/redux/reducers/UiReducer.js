@@ -14,7 +14,8 @@ const intialState = {
    FeedbackImage:null,
    isMicOn:false,
    isCameraOn:false,
-   audioStream:null
+   audioStream:null,
+   videoStream:null
 }
 
 const UiReducer = (state=intialState,action)=>{
@@ -35,6 +36,13 @@ const UiReducer = (state=intialState,action)=>{
          return{
             ...state,
             audioStream:action.audioStream
+         }
+      }
+
+      case "SET_VIDEO":{
+         return{
+            ...state,
+            videoStream:action.videoStream
          }
       }
       case "SET_CAMERA":{
