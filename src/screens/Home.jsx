@@ -3,11 +3,12 @@ import {MdSettings,MdFeedback,MdHelpOutline,MdVideoCall,MdLink,MdAdd} from "reac
 import NewMeetingModal from "../components/NewMeetingModal"
 import { connect } from 'react-redux';
 import conversation from "../assets/conversation.svg"
-import { setDropDown, setModal, setPopOver, setUser } from '../redux/actions/UiActions';
+import { setDropDown, setModal, setPopOver, setToast, setUser } from '../redux/actions/UiActions';
 import { GoogleLogin } from 'react-google-login';
 import Toast from '../components/Toast'
 import axios from "axios";
 import Cookies from "js-cookie";
+import { useHistory } from 'react-router-dom';
 function Avatar({src,setDropDown}){
    return (<div className="avatar" onClick={()=>setDropDown(true)}>
       <img src={src} alt="user-avatar" className="user__avatar"/>
@@ -16,18 +17,46 @@ function Avatar({src,setDropDown}){
 
 
 function Home(props) {
-   const [time,setTime] = React.useState(`${new Date().getHours()}:${new Date().getMinutes()<10?"0"+new Date().getMinutes():new Date().getMinutes()}`);
-
+   const [time,setTime] = React.useState(``);
+   const [code,setCode] = React.useState('');
+   const history = useHistory()
 
    setInterval(()=>{
-      setTime(`${new Date().getHours()}:${new Date().getMinutes()<10?"0"+new Date().getMinutes():new Date().getMinutes()}`)
+      formatAMPM(new Date())
    },1000);
 
+
+
+   function formatAMPM(date) {
+      var hours = date.getHours();
+      var minutes = date.getMinutes();
+      var ampm = hours >= 12 ? 'pm' : 'am';
+      hours = hours % 12;
+      hours = hours ? hours : 12; // the hour '0' should be '12'
+      minutes = minutes < 10 ? '0'+minutes : minutes;
+      var strTime = hours + ':' + minutes + ' ' + ampm;
+      setTime(strTime.toUpperCase());
+    }
+    const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri","Sat"];
+    const months = ["Jan", "Feb", "Mar", "Apr", "May","Jun", "Jul", "Aug", "Sep", "Oct", "Nov","Dec"]
   
 
    
 
    console.log("Home Props",props);
+
+
+   const handlecodeaccept = (e)=>{
+      
+      if (e.keyCode === 13) {
+         if(code.length===7){
+            history.push("/"+code);
+         }
+         else{
+props.setToast("Make sure you enter the valid code");
+         }
+     }
+   }
 
 
    const handlePopRemove = (e)=>{
@@ -47,7 +76,7 @@ function Home(props) {
       }
 
       const {email,name,imageUrl} = response.profileObj;
-
+      
 
       // a function which get user back from db
 
@@ -77,6 +106,9 @@ function Home(props) {
             }
          }
       }
+
+
+    
 
 
 
@@ -119,7 +151,7 @@ function Home(props) {
                <a href="/">Gmeet</a>
             </div>
             <nav>
-               <div className="time_home">{time} PM Sat,Jun 19</div>
+               <div className="time_home">{time} {days[new Date().getDay()]},{months[new Date().getMonth()]} {new Date().getDate()}</div>
                <div className="nav__controls">
                   <button><MdHelpOutline/></button>
                   <button><MdFeedback/></button>
@@ -166,7 +198,7 @@ function Home(props) {
                            <button><MdAdd/> Start an instant meeting</button>
                         </div>}
                         </button>
-                     <input type="text" name="meetingCode" id="code" />
+                     <input type="text" name="meetingCode" id="code" placeholder="Enter Meeting Code" onKeyUp={handlecodeaccept} value={code} onChange={(e)=>setCode(e.target.value)}/>
                   </div>}
             </div>
             <div className="hero__right">
@@ -183,6 +215,7 @@ const mapDispatchToProps = (dispatch)=>({
    setUser:user=>dispatch(setUser(user)),
    setDropDown:userDropDown=>dispatch(setDropDown(userDropDown)),
    setModal:isModal=>dispatch(setModal(isModal)),
+   setToast:isToast=>dispatch(setToast(isToast))
    
   
 })
