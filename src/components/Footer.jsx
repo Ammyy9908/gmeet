@@ -18,7 +18,10 @@ function Footer(props) {
 
    const handleMettingEnd = ()=>{
       
+      
+      socket.emit("leave",{user:props.user && props.peoples.filter(user=>user.name===props.user.name)[0]});
       history.push('/');
+
    }
    return (
       <div className="footer">
@@ -35,7 +38,9 @@ function Footer(props) {
 }
 
 const mapStateToProps = (state)=>({
-   isInfo:state.UiReducer.isInfo
+   isInfo:state.UiReducer.isInfo,
+   user:state.UiReducer.user,
+   peoples:state.UiReducer.peoples,
 })
 const mapDispatchToProps = (dispatch)=>({
    setInfo:isInfo=>dispatch(setInfo(isInfo))
