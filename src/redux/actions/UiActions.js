@@ -49,3 +49,18 @@ export const setModal = (isModal)=>({
    type:"SET_MODAL",
    isModal
 })
+
+export const setPermission = (isPermission)=>({
+   type:"SET_PERMISSION",
+   isPermission
+})
+export const setFeed = (isFeedback)=>({
+   type:"SET_FEEDBACK",
+   isFeedback
+
+})
+
+export const setFeedImage = (FeedbackImage)=>({
+   type:"SET_FEED_IMAGE",
+   FeedbackImage
+})

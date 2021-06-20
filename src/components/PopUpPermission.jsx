@@ -1,0 +1,34 @@
+import React from 'react'
+import { connect } from 'react-redux'
+import { setFeed, setFeedImage, setPermission } from '../redux/actions/UiActions'
+import "./Permission.css"
+function PopUpPermission(props) {
+console.log(props);
+
+   const handleFeedbackPopUp = ()=>{
+      props.setPermission(false);
+      props.setFeed(true);
+     
+   }
+
+  
+   return (
+      <div className="PopUpPermission">
+            <div className="popup-permission-modal">
+               <p>if there was a problem you face during the meting.We need this issues kindly provide us using feedback form appear after allowing us.</p>
+               <div className="permission-controls">
+                  <button onClick={()=>props.setPermission(false)}>Decline</button>
+                  <button onClick={handleFeedbackPopUp}>Allow</button>
+               </div>
+            </div>
+      </div>
+   )
+}
+
+const mapDispatchToProps = (dispatch)=>({
+   setPermission:isPermission=>dispatch(setPermission(isPermission)),
+   setFeed:isFeedback=>dispatch(setFeed(isFeedback)),
+   setFeedImage:FeedbackImage=>dispatch(setFeedImage(FeedbackImage)),
+})
+
+export default connect(null,mapDispatchToProps)(PopUpPermission)

@@ -47,7 +47,7 @@ return history.push("/");
          <Sidebar/>
          <MeetingInfo/>
          <Toast/>
-         <Footer/>
+         <Footer id={id}/>
       </div>
       </SocketContext.Provider>
    )

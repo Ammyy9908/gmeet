@@ -20,7 +20,7 @@ function Footer(props) {
       
       
       socket.emit("leave",{user:props.user && props.peoples.filter(user=>user.name===props.user.name)[0]});
-      history.push('/');
+      history.push(`/end/${props.id}`);
 
    }
    return (

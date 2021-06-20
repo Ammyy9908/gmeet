@@ -9,6 +9,9 @@ const intialState = {
    user:null,
    userDropDown:false,
    isModal:false,
+   isPermission:false,
+   isFeedback:false,
+   FeedbackImage:null
 }
 
 const UiReducer = (state=intialState,action)=>{
@@ -17,6 +20,24 @@ const UiReducer = (state=intialState,action)=>{
          return{
             ...state,
             isNavbar:action.isNavbar
+         }
+      }
+      case "SET_FEED_IMAGE":{
+         return{
+            ...state,
+            FeedbackImage:action.FeedbackImage
+         }
+      }
+      case "SET_PERMISSION":{
+         return{
+            ...state,
+            isPermission:action.isPermission
+         }
+      }
+      case "SET_FEEDBACK":{
+         return{
+            ...state,
+            isFeedback:action.isFeedback
          }
       }
       case "SET_MODAL":{

@@ -8,6 +8,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { connect } from "react-redux";
 import { setUser } from "./redux/actions/UiActions";
+import End from "./screens/End";
 
 function App(props) {
 
@@ -58,6 +59,11 @@ function App(props) {
       <Route exact path="/:code" render={(props) => {
    const id = props.match.params.code;
     return <Room id={id} />
+}}  />
+
+<Route exact path="/end/:code" render={(props) => {
+   const id = props.match.params.code;
+    return <End id={id} />
 }}  />
      
     </Switch>
