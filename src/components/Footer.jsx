@@ -1,14 +1,24 @@
-import React from 'react';
+import React,{useContext} from 'react';
 // eslint-disable-next-line
 import {MdMic,MdCallEnd,MdVideocam,MdVideocamOff,MdKeyboardArrowUp} from 'react-icons/md';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { SocketContext } from '../context/context';
 import { setInfo } from '../redux/actions/UiActions';
 import "./Footer.css";
 
-function Footer(props) {
 
+function Footer(props) {
+   const history = useHistory()
    const handleInfoShow = ()=>{
       props.setInfo(!props.isInfo)
+   }
+
+   const socket = useContext(SocketContext);
+
+   const handleMettingEnd = ()=>{
+      socket.emit("disconnect");
+      history.push('/');
    }
    return (
       <div className="footer">
@@ -17,7 +27,7 @@ function Footer(props) {
          </button>
          <div className="meeting__controls">
             <button><MdMic/></button>
-            <button><MdCallEnd/></button>
+            <button onclick={handleMettingEnd}><MdCallEnd/></button>
             <button><MdVideocam/></button>
          </div>
       </div>
