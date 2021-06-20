@@ -15,8 +15,8 @@ const UserList = (props)=>{
    return (
       <div className="user-list">
          <div className="user__list__left">
-         <Avatar src={"https://randomuser.me/api/portraits/women/79.jpg"}/>
-         <span>User Name</span>
+         <Avatar src={props.avatar}/>
+         <span>{props.name}</span>
          </div>
          <div>
             <button><MdMicNone/></button>
@@ -40,8 +40,8 @@ const [message,setMessage] = React.useState("");
    }
 
    const handleMessage = (e)=>{
-      setMessages([...messages,{time:new Date().getTime(),message:message}])
-      socket.emit("chat-message",{time:new Date().getTime(),message:message});
+      setMessages([...messages,{time:new Date().getTime(),message:message,user:props.user && props.user.name}])
+      socket.emit("chat-message",{time:new Date().getTime(),message:message,user:props.user && props.user.name});
       setMessage('');
    }
 
@@ -70,7 +70,7 @@ setMessages([...messages,message.message])
           
             {
                props.peoples.map((people,i)=>{
-                  return   <UserList key={i}/>
+                  return   <UserList key={i} name={people.name} avatar={people.avatar}/>
                })
             }
          </div>}
@@ -80,7 +80,7 @@ setMessages([...messages,message.message])
                   messages.map((message,i)=>{
                      return <div className="user-chat">
                       <div className="chat__top">
-                         <span>You</span>
+                         <span>{props.user&& props.user.name===message.user?"You":message.user}</span>
                          <span>{new Date(message.time).getHours()}:{new Date(message.time).getMinutes()}</span>
                       </div>
                       <div className="chat__message">
@@ -111,5 +111,6 @@ const mapStateToProps = (state)=>({
    isSidebar:state.UiReducer.isSidebar,
    activeTab:state.UiReducer.activeTab,
    peoples:state.UiReducer.peoples,
+   user:state.UiReducer.user,
 })
 export default connect(mapStateToProps,mapDispatchToProps)(Sidebar)
