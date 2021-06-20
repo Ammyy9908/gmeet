@@ -19,7 +19,7 @@ function MeetingInfo(props) {
         
          <div className="meeting__info__body">
             <h3>Joining info</h3>
-            <span>https://meet.google.com/cqv-arvg-dii</span>
+            <span>{window.location.href}</span>
             <button className="meet_url__copy" onClick={handleCopy}>
 <MdContentPaste/> Copy Joining info
             </button>
