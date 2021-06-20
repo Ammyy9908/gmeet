@@ -7,6 +7,32 @@
   height: 100vh;
   background-color: var(--color--secondary);
 }
+.room-body{
+  width: 100%;
+  height: 90vh;
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap:1.75rem;
+  padding-top: 15px;
+}
+.user-tile{
+  background-color: rgba(78, 78, 78, 0.233);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.people__avatar{
+  width: 115px;
+  height:115px;
+
+}
+.people__avatar img{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
 .homepage{
   width: 100%;
   height: 100vh;
@@ -137,13 +163,14 @@ line-height:25px;
 .hero__meeting__form{
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   gap:15px;
 }
 .hero__meeting__form > button{
   background-color:var(--color-primary);
   padding: 12px;
   color: #fff;
-  width: 150px;
+  
   border: 0;
   height:45px;
 transition:all .2s ease-in-out;
@@ -302,4 +329,49 @@ margin-bottom: 25px;
  
   background-color: #7c4dff34;
  
+}
+
+
+@media screen and (max-width:846px){
+  .nav__controls{
+    display: none;
+  }
+  .landing{
+    width: 100%;
+  display: block;
+  align-items: center;
+  height:75vh;
+  }
+}
+@media screen and (max-width:515px){
+  .time_home{
+    display: none;
+  }
+  
+  .hero__meeting__form > button
+  {
+
+   flex: 1;
+  }
+  .hero__meeting__form input{
+    flex: 1;
+    padding-left: 10px;
+    outline:0;
+    border-radius: 5px;
+    background-color:transparent;
+    border: 1px solid #999;
+    
+  }
+  .hero__left{
+    padding-left: 5;
+    padding-right: 5;
+  }
+  .hero__right img{
+    width: 100%;
+    height:55%;
+    position:absolute;
+    right:0px;
+    top:45px;
+  }
+  
 }

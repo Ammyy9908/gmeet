@@ -64,3 +64,18 @@ export const setFeedImage = (FeedbackImage)=>({
    type:"SET_FEED_IMAGE",
    FeedbackImage
 })
+
+export const setMic = (isMicOn)=>({
+   type:"SET_MICROPHONE",
+   isMicOn
+})
+
+export const setCamera = (isCameraOn)=>({
+   type:"SET_CAMERA",
+   isCameraOn
+})
+
+export const setAudio = (audioStream)=>({
+   type:"SET_AUDIO",
+   audioStream
+})

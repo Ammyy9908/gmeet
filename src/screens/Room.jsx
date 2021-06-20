@@ -10,7 +10,19 @@ import {SocketContext, socket} from '../context/context';
 import ping from "../assets/Ping.mp3";
 import Cookies from "js-cookie";
 import { useHistory } from 'react-router-dom'
-function Room({id,setPeople,setToast,user}) {
+
+
+function UserTile({people,audioStream}){
+   return (
+      <div className="user-tile">
+            <div className="people__avatar">
+               <audio autoplay="true" id={people.id} src={audioStream}/>
+               <img src={people.avatar} alt="people-avatar" />
+            </div>
+      </div>
+   )
+}
+function Room({id,setPeople,setToast,user,peoples,audioStream}) {
 
    const history = useHistory();
    console.log("props user",user);
@@ -46,6 +58,14 @@ return history.push("/");
          <Navbar/>
          <Sidebar/>
          <MeetingInfo/>
+
+         <div className="room-body">
+           {
+              peoples.map((people,i)=>{
+                 return <UserTile key={i} people={people}/>
+              })
+           }
+         </div>
          <Toast/>
          <Footer id={id}/>
       </div>
@@ -54,7 +74,9 @@ return history.push("/");
 }
 
 const mapStateToProps = (state)=>({
-   user:state.UiReducer.user
+   user:state.UiReducer.user,
+   peoples:state.UiReducer.peoples,
+   audioStream:state.UiReducer.audioStream,
 })
 
 const mapDispatchToProps = (dispatch)=>({

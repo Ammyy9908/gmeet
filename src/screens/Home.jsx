@@ -198,7 +198,7 @@ props.setToast("Make sure you enter the valid code");
                            <button><MdAdd/> Start an instant meeting</button>
                         </div>}
                         </button>
-                     <input type="text" name="meetingCode" id="code" placeholder="Enter Meeting Code" onKeyUp={handlecodeaccept} value={code} onChange={(e)=>setCode(e.target.value)}/>
+                     <input type="text" name="meetingCode" id="code" placeholder="Enter Meeting Code" onKeyUp={handlecodeaccept} value={code} onChange={(e)=>setCode(e.target.value)} autocomplete="off"/>
                   </div>}
             </div>
             <div className="hero__right">

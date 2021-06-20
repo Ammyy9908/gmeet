@@ -11,7 +11,10 @@ const intialState = {
    isModal:false,
    isPermission:false,
    isFeedback:false,
-   FeedbackImage:null
+   FeedbackImage:null,
+   isMicOn:false,
+   isCameraOn:false,
+   audioStream:null
 }
 
 const UiReducer = (state=intialState,action)=>{
@@ -20,6 +23,24 @@ const UiReducer = (state=intialState,action)=>{
          return{
             ...state,
             isNavbar:action.isNavbar
+         }
+      }
+      case "SET_MICROPHONE":{
+         return{
+            ...state,
+            isMicOn:action.isMicOn
+         }
+      }
+      case "SET_AUDIO":{
+         return{
+            ...state,
+            audioStream:action.audioStream
+         }
+      }
+      case "SET_CAMERA":{
+         return{
+            ...state,
+            isCameraOn:action.isCameraOn
          }
       }
       case "SET_FEED_IMAGE":{
