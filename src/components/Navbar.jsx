@@ -52,7 +52,7 @@ function Navbar(props) {
          </div>
          <div className="logined__user">
             <span>You</span>
-            <Avatar src="https://randomuser.me/api/portraits/men/46.jpg"/>
+            <Avatar src={props.user && props.user.avatar}/>
          </div>
       </div>
    )
@@ -65,6 +65,7 @@ const mapDispatchToProps = (dispatch)=>({
 })
 const mapStateToProps = (state)=>({
    isNavbar:state.UiReducer.isNavbar,
-   peoples:state.UiReducer.peoples
+   peoples:state.UiReducer.peoples,
+   user:state.UiReducer.user
 })
 export default connect(mapStateToProps,mapDispatchToProps)(Navbar)
