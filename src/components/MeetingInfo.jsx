@@ -6,9 +6,9 @@ import { connect } from 'react-redux';
 import { setToast } from '../redux/actions/UiActions';
 
 function MeetingInfo(props) {
-
+const [link] = React.useState(window.location.href);
    const handleCopy =()=>{
-      navigator.clipboard.writeText("https://meet.google.com/cqv-arvg-dii").then(()=>{
+      navigator.clipboard.writeText(link).then(()=>{
    props.setToast("meet link copied successfully")
       }).catch((e)=>{
          console.error(e);
@@ -19,7 +19,7 @@ function MeetingInfo(props) {
         
          <div className="meeting__info__body">
             <h3>Joining info</h3>
-            <span>{window.location.href}</span>
+            <span>{link}</span>
             <button className="meet_url__copy" onClick={handleCopy}>
 <MdContentPaste/> Copy Joining info
             </button>
