@@ -10,6 +10,7 @@ import {SocketContext, socket} from '../context/context';
 import ping from "../assets/Ping.mp3";
 import Cookies from "js-cookie";
 import { useHistory } from 'react-router-dom'
+import ToastMini from "../components/ToastMini"
 
 
 function UserTile({people,isCameraOn}){
@@ -21,14 +22,15 @@ function UserTile({people,isCameraOn}){
               
 
             </div>
-            
+
       </div>
    )
 }
-function Room({id,setPeople,setToast,user,peoples,isCameraOn}) {
+function Room({id,setPeople,setToast,user,peoples,isCameraOn,isMicOn,isToastMini}) {
 
    const history = useHistory();
    console.log("props user",user);
+   
   React.useEffect(() => {
 
 if(!Cookies.get("AUTH_TOKEN")){
@@ -61,7 +63,7 @@ return history.push("/");
          <Navbar/>
          <Sidebar/>
          <MeetingInfo/>
-
+           {isToastMini &&  <ToastMini message={isMicOn?"Microphone on":"Microphone off"}/>}
          <div className="room-body">
            {
               peoples.map((people,i)=>{
@@ -81,6 +83,8 @@ const mapStateToProps = (state)=>({
    peoples:state.UiReducer.peoples,
    audioStream:state.UiReducer.audioStream,
    isCameraOn:state.UiReducer.isCameraOn,
+   isMicOn:state.UiReducer.isMicOn,
+   isToastMini:state.UiReducer.isToastMini
 })
 
 const mapDispatchToProps = (dispatch)=>({

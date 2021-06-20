@@ -15,7 +15,8 @@ const intialState = {
    isMicOn:false,
    isCameraOn:false,
    audioStream:null,
-   videoStream:null
+   videoStream:null,
+   isToastMini:false
 }
 
 const UiReducer = (state=intialState,action)=>{
@@ -24,6 +25,12 @@ const UiReducer = (state=intialState,action)=>{
          return{
             ...state,
             isNavbar:action.isNavbar
+         }
+      }
+      case "SET_TOAST_MINI":{
+         return{
+            ...state,
+            isToastMini:action.isToastMini
          }
       }
       case "SET_MICROPHONE":{

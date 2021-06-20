@@ -84,3 +84,8 @@ export const setVideo = (videoStream)=>({
    type:"SET_VIDEO",
    videoStream
 })
+
+export const setToastMini = (isToastMini)=>({
+   type:"SET_TOAST_MINI",
+   isToastMini
+})
