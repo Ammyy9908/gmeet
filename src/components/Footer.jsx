@@ -27,7 +27,7 @@ function Footer(props) {
          </button>
          <div className="meeting__controls">
             <button><MdMic/></button>
-            <button onclick={handleMettingEnd}><MdCallEnd/></button>
+            <button onClick={handleMettingEnd}><MdCallEnd/></button>
             <button><MdVideocam/></button>
          </div>
       </div>
