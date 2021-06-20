@@ -17,7 +17,7 @@ function Footer(props) {
    const socket = useContext(SocketContext);
 
    const handleMettingEnd = ()=>{
-      socket.emit("disconnect");
+      
       history.push('/');
    }
    return (
