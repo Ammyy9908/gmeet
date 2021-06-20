@@ -12,12 +12,13 @@ function Avatar({src}){
 }
 
 function Navbar(props) {
-   const [time,setTime] = React.useState(`${new Date().getHours()}:${new Date().getMinutes()}`);
+   const [time,setTime] = React.useState(`${new Date().getHours()}:${new Date().getMinutes()<10?"0"+new Date().getMinutes():new Date().getMinutes()}`);
 
 
    setInterval(()=>{
-      setTime(`${new Date().getHours()}:${new Date().getMinutes()}`)
+      setTime(`${new Date().getHours()}:${new Date().getMinutes()<10?"0"+new Date().getMinutes():new Date().getMinutes()}`)
    },1000);
+
 
    const handlePeople = ()=>{
       props.setTab("people");

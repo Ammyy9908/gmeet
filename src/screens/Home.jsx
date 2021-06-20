@@ -16,7 +16,12 @@ function Avatar({src,setDropDown}){
 
 
 function Home(props) {
+   const [time,setTime] = React.useState(`${new Date().getHours()}:${new Date().getMinutes()<10?"0"+new Date().getMinutes():new Date().getMinutes()}`);
 
+
+   setInterval(()=>{
+      setTime(`${new Date().getHours()}:${new Date().getMinutes()<10?"0"+new Date().getMinutes():new Date().getMinutes()}`)
+   },1000);
 
   
 
@@ -114,7 +119,7 @@ function Home(props) {
                <a href="/">Gmeet</a>
             </div>
             <nav>
-               <div className="time_home">2:15 PM Sat,Jun 19</div>
+               <div className="time_home">{time} PM Sat,Jun 19</div>
                <div className="nav__controls">
                   <button><MdHelpOutline/></button>
                   <button><MdFeedback/></button>

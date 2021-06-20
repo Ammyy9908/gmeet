@@ -164,6 +164,9 @@
 .user__list__left .avatar{
    margin-right: 10px;
 }
+.user__list__left span{
+   font-family: sans-serif;
+}
 .user-list button{
 width: 45px;
 height:45px;
