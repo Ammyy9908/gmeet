@@ -4,7 +4,7 @@ import {MdMic,MdCallEnd,MdVideocam,MdVideocamOff,MdKeyboardArrowUp,MdMicOff} fro
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { SocketContext } from '../context/context';
-import { setAudio, setCamera, setInfo, setMic, setVideo } from '../redux/actions/UiActions';
+import { setAudio, setCamera, setInfo, setMic, setToastMini, setVideo } from '../redux/actions/UiActions';
 import "./Footer.css";
 
 
@@ -43,6 +43,7 @@ function Footer(props) {
          myAudio.srcObject = stream;
          props.setAudio(stream);
          props.setMic(true);
+         props.setToastMini(true);
         
          
       }).catch( err => {
@@ -56,6 +57,7 @@ function Footer(props) {
    props.audioStream.getAudioTracks()[0].enabled = false;
   }
    props.setMic(false);
+   props.setToastMini(true);
   }
 
 
@@ -90,6 +92,7 @@ function Footer(props) {
    const currentUser = props.peoples.filter((people)=>people.email===props.user.email)[0];
    const videoTag = document.getElementById(currentUser.id+"video");
    const isEnabled = props.videoStream.getVideoTracks()[0].enabled;
+  props.videoStream.getVideoTracks()[0].stop();
    if( isEnabled){
     props.videoStream.getVideoTracks()[0].enabled = false;
    }
@@ -128,6 +131,7 @@ const mapDispatchToProps = (dispatch)=>({
    setMic:isMicOn=>dispatch(setMic(isMicOn)),
    setCamera:isCameraOn=>dispatch(setCamera(isCameraOn)),
    setAudio:audioStream=>dispatch(setAudio(audioStream)),
-   setVideo:videoStream=>dispatch(setVideo(videoStream))
+   setVideo:videoStream=>dispatch(setVideo(videoStream)),
+   setToastMini:isToastMini=>dispatch(setToastMini(isToastMini)),
 })
 export default connect(mapStateToProps,mapDispatchToProps)(Footer)

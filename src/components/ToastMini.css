@@ -1,0 +1,38 @@
+.toast-mini{
+   position: fixed;
+   top:45px;
+   left:50%;
+   padding:15px;
+   display: flex;
+   align-items:center;
+   justify-content: space-around;
+   color: #fff;
+   background-color: #000;
+   border-radius:65px;
+   font-family: sans-serif;
+   font-weight: 500;
+   font-size: 15px;
+   animation:scaleUp .1s 1 linear;
+   
+}
+
+
+@keyframes scaleUp {
+   0%{
+      transform: scale(.1);
+   opacity: .1;
+   }
+   50%{
+      transform: scale(.5);
+   opacity: .5;
+   }
+   100%{
+      transform: scale(1);
+   opacity: 1;
+   }
+}
+
+.toast-mini svg{
+   width: 20px;
+   height: 20px;
+}
