@@ -9,8 +9,8 @@ import Toast from '../components/Toast'
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useHistory } from 'react-router-dom';
-function Avatar({src,setDropDown}){
-   return (<div className="avatar" onClick={()=>setDropDown(true)}>
+function Avatar({src,setDropDown,dropdown}){
+   return (<div className="avatar" onClick={()=>setDropDown(!dropdown)}>
       <img src={src} alt="user-avatar" className="user__avatar"/>
    </div>);
 }
@@ -157,7 +157,7 @@ props.setToast("Make sure you enter the valid code");
                   <button><MdFeedback/></button>
                   <button><MdSettings/></button>
                </div>
-              { props.user && <Avatar src={props.user.avatar} setDropDown={props.setDropDown}/>}
+              { props.user && <Avatar src={props.user.avatar} setDropDown={props.setDropDown} dropdown={props.userDropDown}/>}
 
               {props.userDropDown && <div className="account_dropdown">
                <h3>{props.user && props.user.name}</h3>
