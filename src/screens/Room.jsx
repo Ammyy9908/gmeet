@@ -16,12 +16,13 @@ import ToastMini from "../components/ToastMini"
 function UserTile({people,isCameraOn}){
    return (
       <div className="user-tile" id={people.id+"media"}>
-            <div className="people__avatar">
-               <audio autoplay="true" id={people.id}/>
+         <audio autoplay="true" id={people.id}/>
+            {!isCameraOn && <div className="people__avatar">
+               <img src={people.avatar} alt="avatar"/>
 
               
 
-            </div>
+            </div>}
 
       </div>
    )

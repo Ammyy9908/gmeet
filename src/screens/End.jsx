@@ -16,6 +16,9 @@ function End(props) {
       history.push("/"+props.id);
    }
 
+
+  
+
    
    return (
       <div className="end-meeting">

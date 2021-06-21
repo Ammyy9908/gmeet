@@ -280,6 +280,7 @@ position: relative;
   align-items:center;
   justify-content:center;
   flex-direction:column;
+  
 }
 .end-meeting-heading{
   font-family: 'Google Sans',Roboto,Arial,sans-serif;
@@ -396,5 +397,38 @@ margin-bottom: 25px;
     width: 90%;
     margin: 0 auto;
     height:350px;
+  }
+  .end-meeting-heading{
+    font-family: 'Google Sans',Roboto,Arial,sans-serif;
+  font-size: 20px;
+  
+  }
+
+  .end-meeting-wrapper{
+    
+    width: 100%;
+  }
+
+  
+}
+
+@media screen and (max-width:320px){
+  end-meeting-buttons{
+    width:90%;
+    display: flex;
+    align-items: center;
+   justify-content:space-around;
+  }
+  .end-meeting-buttons button{
+    width: 80px;
+
+
+    height: 45px;
+    background-color: transparent;
+    border-radius: 5px;
+    font-weight: 500;
+    cursor: pointer;
+    font-size: 12px;
+  
   }
 }

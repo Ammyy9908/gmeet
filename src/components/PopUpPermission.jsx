@@ -11,11 +11,18 @@ console.log(props);
      
    }
 
+
+   const handleFeedbackPopUpClose =(e)=>{
+      console.log(e.target);
+if(!e.target.classList.contains('popup-permission-modal') && !e.target.classList.contains('permission-controls') && !e.target.classList.contains('permission-text')){
+   props.setPermission(false);
+}
+   }
   
    return (
-      <div className="PopUpPermission">
+      <div className="PopUpPermission" onClick={handleFeedbackPopUpClose}>
             <div className="popup-permission-modal">
-               <p>if there was a problem you face during the meting.We need this issues kindly provide us using feedback form appear after allowing us.</p>
+               <p className="permission-text">if there was a problem you face during the meting.We need this issues kindly provide us using feedback form appear after allowing us.</p>
                <div className="permission-controls">
                   <button onClick={()=>props.setPermission(false)}>Decline</button>
                   <button onClick={handleFeedbackPopUp}>Allow</button>

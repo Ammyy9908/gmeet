@@ -20,7 +20,7 @@
    height:150px;
    justify-content:space-between;
   
-   animation:scaleup .2s 1 linear;
+   animation:scaleup .1s 1 linear;
 }
 .popup-permission-modal p {
    color: rgb(92, 92, 92);
@@ -59,4 +59,18 @@ font-size: 14px;
 }
 .permission-controls button:hover{
    background-color: #7c4dff1f;
+}
+
+
+@media screen and (max-width:360px){
+   .popup-permission-modal{
+      width: 340px;
+   }
+}
+
+@media screen and (max-width:320px){
+   .popup-permission-modal{
+      width: 300px;
+      padding-bottom: 25px;
+   }
 }
