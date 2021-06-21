@@ -384,3 +384,17 @@ margin-bottom: 25px;
   }
   
 }
+
+
+@media screen and (max-width:465px) {
+  .room-body{
+    display: flex;
+    flex-direction: column;
+   padding-top: 65px;
+  }
+  .user-tile{
+    width: 90%;
+    margin: 0 auto;
+    height:350px;
+  }
+}

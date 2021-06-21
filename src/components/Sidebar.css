@@ -5,6 +5,7 @@
    height:100vh;
    transition:all .3s ease-in-out;
    width:350px;
+   z-index: 999;
 }
 .sidebar__enable{
    right:0px;
